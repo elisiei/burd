@@ -12,7 +12,7 @@ var registeredCommands []*discordgo.ApplicationCommand
 func Register(s *discordgo.Session) {
 	commands := []*discordgo.ApplicationCommand{&invert.Command}
 	handlers := map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
-		"invert": invert.Handler,
+		invert.Command.Name: invert.Handler,
 	}
 	registeredCommands = make([]*discordgo.ApplicationCommand, len(commands))
 
