@@ -1,4 +1,4 @@
-package invert
+package grayscale
 
 import (
 	"burd/dc/msg"
@@ -27,7 +27,7 @@ func Handler(s *discordgo.Session, i *discordgo.InteractionCreate) {
 		return
 	}
 
-	result := effects.Invert(decoded)
+	result := effects.Grayscale(decoded)
 	encoded, err := io.Encode(result, io.PNGEncoder())
 	if err != nil {
 		msg.Reply(s, i, err.Error(), nil)

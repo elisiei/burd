@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"burd/commands/grayscale"
 	"burd/commands/invert"
 	"burd/logger"
 
@@ -10,9 +11,13 @@ import (
 var registeredCommands []*discordgo.ApplicationCommand
 
 func Register(s *discordgo.Session) {
-	commands := []*discordgo.ApplicationCommand{&invert.Command}
+	commands := []*discordgo.ApplicationCommand{
+		&invert.Command,
+		&grayscale.Command,
+	}
 	handlers := map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
-		invert.Command.Name: invert.Handler,
+		invert.Command.Name:    invert.Handler,
+		grayscale.Command.Name: grayscale.Handler,
 	}
 	registeredCommands = make([]*discordgo.ApplicationCommand, len(commands))
 
